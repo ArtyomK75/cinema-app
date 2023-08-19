@@ -5,6 +5,8 @@ import cinema.model.ShoppingCart;
 import cinema.model.Ticket;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class ShoppingCartMapper implements
         ResponseDtoMapper<ShoppingCartResponseDto, ShoppingCart> {
@@ -16,7 +18,7 @@ public class ShoppingCartMapper implements
         responseDto.setTicketIds(shoppingCart.getTickets()
                 .stream()
                 .map(Ticket::getId)
-                .toList());
+                .collect(Collectors.toList()));
         return responseDto;
     }
 }

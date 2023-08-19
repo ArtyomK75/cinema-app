@@ -5,6 +5,8 @@ import cinema.model.Order;
 import cinema.model.Ticket;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class OrderMapper implements ResponseDtoMapper<OrderResponseDto, Order> {
     @Override
@@ -16,7 +18,7 @@ public class OrderMapper implements ResponseDtoMapper<OrderResponseDto, Order> {
         responseDto.setTicketIds(order.getTickets()
                 .stream()
                 .map(Ticket::getId)
-                .toList());
+                .collect(Collectors.toList()));
         return responseDto;
     }
 }
